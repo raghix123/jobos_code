@@ -1,36 +1,47 @@
 from pybricks.hubs import PrimeHub
-from pybricks.parameters import Button, Note
+from pybricks.parameters import Button
 from pybricks.tools import wait
+from bob import Bob
 
 hub = PrimeHub()
-    
-number = 1
-hub.display.number(number)
+bob = Bob()
+
+# List of files to cycle through (excluding test.py, main.py, and bob.py)
+files = ["mission2akewl"]
+current_index = 0
+current_file = files[current_index]
+
+# Display current file number
+hub.display.number(current_index + 1)
+
+print("File selector ready!")
+print("RIGHT button: Next file")
+print("LEFT button: Execute current file")
+print(f"Current file: {current_file}.py")
 
 while True:
     pressed = hub.buttons.pressed()
+    
+    # Debug: print what buttons are pressed
+    if pressed:
+        print(f"Buttons pressed: {pressed}")
 
-    # RIGHT button cycles through 1 → 5
+    # RIGHT button cycles through files
     if Button.RIGHT in pressed:
-        number += 1
-        if number > 5:
-            number = 1
-        hub.display.number(number)
+        print("RIGHT button detected!")
+        current_index += 1
+        if current_index >= len(files):
+            current_index = 0
+        current_file = files[current_index]
+        hub.display.number(current_index + 1)
+        print(f"Selected: {current_file}.py")
         wait(300)
 
-    # LEFT button plays tune for current number
+    # LEFT button executes the current file
     elif Button.LEFT in pressed:
-        if number == 1:
-            hub.speaker.play_notes([Note.C4, Note.E4, Note.G4])  # C major
-            
-        elif number == 2:
-            hub.speaker.play_notes([Note.D4, Note.F4, Note.A4])  # D minor
-        elif number == 3:
-            hub.speaker.play_notes([Note.E4, Note.G4, Note.B4])  # E minor
-        elif number == 4:
-            hub.speaker.play_notes([Note.F4, Note.A4, Note.C5])  # F major
-        elif number == 5:
-            hub.speaker.play_notes([Note.G4, Note.B4, Note.D5])  # G major
+        print("LEFT button detected!")
+        print(f"Executing {current_file}.py...")
+        bob.execute(current_file)
         wait(300)
 
     wait(50)
