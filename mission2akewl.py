@@ -1,0 +1,47 @@
+import pybricks
+
+from pybricks.hubs import PrimeHub
+from pybricks.pupdevices import Motor
+from pybricks.parameters import Port, Direction, Stop
+from pybricks.robotics import DriveBase
+from pybricks.tools import wait
+
+# Initialize hub
+hub = PrimeHub()
+
+# Drive motors
+left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
+right_motor = Motor(Port.F)
+
+# Attachment motor (with small fixture + gears)
+attachment_motor = Motor(Port.D)
+
+# Set up drivebase
+drivebase = DriveBase(left_motor, right_motor, wheel_diameter=89, axle_track=152)
+
+attachment_motor.run_angle(100,250)
+
+drivebase.drive(300,0)
+wait(2600)
+drivebase.stop()
+
+drivebase.turn(-20)
+
+attachment_motor.run_angle(100,-75)
+
+drivebase.drive(150,0)
+wait(500)
+drivebase.stop()
+
+attachment_motor.run_angle(100,-150)
+
+drivebase.drive(-200,0)
+wait(500)
+drivebase.stop()
+
+drivebase.turn(30)
+
+drivebase.drive(-300,0)
+wait(2600)
+drivebase.stop()
+
