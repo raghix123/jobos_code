@@ -1,23 +1,15 @@
 from pybricks.hubs import PrimeHub
 from pybricks.parameters import Button
 from pybricks.tools import wait
+import run1, run2
 from bob import Bob
+
 
 hub = PrimeHub()
 bob = Bob()
-
-# List of files to cycle through (excluding test.py, main.py, and bob.py)
-files = ["mission2akewl"]
-current_index = 0
-current_file = files[current_index]
-
-# Display current file number
-hub.display.number(current_index + 1)
-
-print("File selector ready!")
-print("RIGHT button: Next file")
-print("LEFT button: Execute current file")
-print(f"Current file: {current_file}.py")
+    
+number = 1
+hub.display.number(number)
 
 while True:
     pressed = hub.buttons.pressed()
@@ -39,9 +31,16 @@ while True:
 
     # LEFT button executes the current file
     elif Button.LEFT in pressed:
-        print("LEFT button detected!")
-        print(f"Executing {current_file}.py...")
-        bob.execute(current_file)
+        if number == 1:
+            run1.execute(bob=bob)
+        elif number == 2:
+            run2.execute(bob=bob)
+        elif number == 3:
+            run3.execute(bob=Bob)
+        elif number == 4:
+            run4.execute(bob=Bob)
+        elif number == 5:
+            run5.execute(bob=Bob)
         wait(300)
 
     wait(50)

@@ -22,18 +22,35 @@ class Bob:
             wheel_diameter=89,
             axle_track=152,
         )
+        self.drivebase.use_gyro(True)
 
-    def forward(self, distance):
+    def foreward(self, distance, speed):
         print("move fwd " + str(distance))
-        self.drivebase.straight(distance, then=Stop.HOLD, wait=True)
+        default_speed = self.drivebase.settings()[0]
+        self.drivebase.settings(straight_speed=speed)
+        self.drivebase.straight(distance, then=Stop.BRAKE, wait=True)
+        self.drivebase.settings(straight_speed=default_speed)
 
-    def reverse(self, distance):
+    def reverse(self, distance, speed):
         print("move backward " + str(distance))
-        self.drivebase.straight(distance, then=Stop.HOLD, wait=True)
+        default_speed = self.drivebase.settings()[0]
+        self.drivebase.settings(straight_speed=speed)
+        self.drivebase.straight(-distance, then=Stop.BRAKE, wait=True)
+        self.drivebase.settings(straight_speed=default_speed)
 
     def turn(self, degree):
         print("turning " + str(degree))
-        self.drivebase.turn(degree, then=Stop.HOLD, wait=True)
+        self.drivebase.turn(degree, then=Stop.BRAKE, wait=True)
+    
+    def turn_front_motor(self, degree, speed):
+        print("turning front motor " +str(degree))
+        self.drivebase.turn(speed ,angle=degree, then=Stop.BRAKE, wait=True)
+
+    def turn_back_motor(self, degree, speed):
+        print("turning front motor " +str(degree))
+        self.drivebase.turn(speed ,degree, then=Stop.BRAKE, wait=True)
+
+
     
     def drive(self, speed, turn_rate):
         """Drive at specified speed and turn rate"""
