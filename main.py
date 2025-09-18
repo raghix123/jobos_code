@@ -8,10 +8,10 @@ from bob import Bob
 hub = PrimeHub()
 bob = Bob()
 
-total_number_of_runs = 3
+total_number_of_runs = 10
     
-number = 1
-hub.display.number(number)
+current_index = 1
+hub.display.number(current_index)
 
 while True:
     pressed = hub.buttons.pressed()
@@ -23,35 +23,36 @@ while True:
     # RIGHT button cycles through files
     if Button.RIGHT in pressed:
         print("RIGHT button detected!")
-        current_index += 1
         if current_index > total_number_of_runs:
             current_index = 0
-        hub.display.number(current_index + 1)
+        else:
+            current_index += 1
+        hub.display.number(current_index)
         print(f"Selected: {current_index}.py")
         wait(300)
 
     # LEFT button executes the current file
     elif Button.LEFT in pressed:
-        if number == 1:
+        if current_index == 1:
             run1.execute(bob=bob)
-        elif number == 2:
+        elif current_index == 2:
             run2.execute(bob=bob)
-        elif number == 3:
-            run3.execute(bob=Bob)
-        elif number == 4:
-            run4.execute(bob=Bob)
-        elif number == 5:
-            run5.execute(bob=Bob)
-        elif number == 6:
-            run5.execute(bob=Bob)
-        elif number == 7:
-            run5.execute(bob=Bob) 
-        elif number == 8:
-            run5.execute(bob=Bob) 
-        elif number == 9:
-            run5.execute(bob=Bob) 
-        elif number == 10:
-            run5.execute(bob=Bob)     
+        elif current_index == 3:
+            run3.execute(bob=bob)
+        elif current_index == 4:
+            run4.execute(bob=bob)
+        elif current_index == 5:
+            run5.execute(bob=bob)
+        elif current_index == 6:
+            run6.execute(bob=bob)
+        elif current_index == 7:
+            run7.execute(bob=bob) 
+        elif current_index == 8:
+            run8.execute(bob=bob) 
+        elif current_index == 9:
+            run9.execute(bob=bob) 
+        elif current_index == 10:
+            run10.execute(bob=bob)     
         wait(300)
 
     wait(50)
