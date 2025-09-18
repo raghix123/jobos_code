@@ -69,77 +69,77 @@ class Bob:
         print(f"attachment motor running at speed {speed} for angle {angle}")
         self.attachment_motor.run_angle(speed, angle)
     
-    def execute(self, filename):
-        """
-        Play a noise and then execute a specific robot program.
+    # def execute(self, filename):
+    #     """
+    #     Play a noise and then execute a specific robot program.
         
-        Args:
-            filename: Name of the robot program to execute
-        """
-        print(f"Starting execution of {filename}...")
+    #     Args:
+    #         filename: Name of the robot program to execute
+    #     """
+    #     print(f"Starting execution of {filename}...")
         
-        # Play a startup sound
-        print("Playing startup sound...")
-        self.hub.speaker.beep(523, 200)  # C5
-        self.hub.speaker.beep(659, 200)  # E5
-        self.hub.speaker.beep(784, 200)  # G5
-        self.hub.speaker.beep(1047, 200) # C6
+    #     # Play a startup sound
+    #     print("Playing startup sound...")
+    #     self.hub.speaker.beep(523, 200)  # C5
+    #     self.hub.speaker.beep(659, 200)  # E5
+    #     self.hub.speaker.beep(784, 200)  # G5
+    #     self.hub.speaker.beep(1047, 200) # C6
         
-        try:
-            # Execute specific robot programs
-            if filename == "mission2akewl":
-                self.run_mission2akewl()
-            else:
-                print(f"Unknown program: {filename}")
-                return
+    #     try:
+    #         # Execute specific robot programs
+    #         if filename == "mission2akewl":
+    #             self.run_mission2akewl()
+    #         else:
+    #             print(f"Unknown program: {filename}")
+    #             return
                 
-        except Exception as e:
-            print(f"Error executing {filename}: {e}")
+    #     except Exception as e:
+    #         print(f"Error executing {filename}: {e}")
         
-        # Play completion sound
-        print("Playing completion sound...")
-        self.hub.speaker.beep(784, 200)  # G5
-        self.hub.speaker.beep(659, 200)  # E5
-        self.hub.speaker.beep(523, 200)  # C5
+    #     # Play completion sound
+    #     print("Playing completion sound...")
+    #     self.hub.speaker.beep(784, 200)  # G5
+    #     self.hub.speaker.beep(659, 200)  # E5
+    #     self.hub.speaker.beep(523, 200)  # C5
     
-    def run_mission2akewl(self):
-        """Run the mission2akewl robot program"""
-        print("Running mission2akewl program...")
+    # def run_mission2akewl(self):
+    #     """Run the mission2akewl robot program"""
+    #     print("Running mission2akewl program...")
         
-        # Move attachment motor up
-        self.attachment_run_angle(100, 250)
+    #     # Move attachment motor up
+    #     self.attachment_run_angle(100, 250)
         
-        # Drive forward
-        self.drive(300, 0)
-        wait(2600)
-        self.stop()
+    #     # Drive forward
+    #     self.drive(300, 0)
+    #     wait(2600)
+    #     self.stop()
         
-        # Turn left
-        self.turn(-20)
+    #     # Turn left
+    #     self.turn(-20)
         
-        # Move attachment motor down slightly
-        self.attachment_run_angle(100, -75)
+    #     # Move attachment motor down slightly
+    #     self.attachment_run_angle(100, -75)
         
-        # Drive forward a bit
-        self.drive(150, 0)
-        wait(500)
-        self.stop()
+    #     # Drive forward a bit
+    #     self.drive(150, 0)
+    #     wait(500)
+    #     self.stop()
         
-        # Move attachment motor down more
-        self.attachment_run_angle(100, -150)
+    #     # Move attachment motor down more
+    #     self.attachment_run_angle(100, -150)
         
-        # Drive backward
-        self.drive(-200, 0)
-        wait(500)
-        self.stop()
+    #     # Drive backward
+    #     self.drive(-200, 0)
+    #     wait(500)
+    #     self.stop()
         
-        # Turn right
-        self.turn(30)
+    #     # Turn right
+    #     self.turn(30)
         
-        # Drive backward
-        self.drive(-300, 0)
-        wait(2600)
-        self.stop()
+    #     # Drive backward
+    #     self.drive(-300, 0)
+    #     wait(2600)
+    #     self.stop()
         
-        print("Mission2akewl program completed!")
+    #     print("Mission2akewl program completed!")
     
