@@ -14,6 +14,7 @@ class Bob:
         self.left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
         self.right_motor = Motor(Port.F)
         self.attachment_motor = Motor(Port.D)
+        self.back_motor = Motor(Port.C)
 
         # Drive base (wheels on B & F, 89mm wheels, 152mm axle track)
         self.drivebase = DriveBase(
@@ -44,11 +45,11 @@ class Bob:
     
     def turn_front_motor(self, degree, speed):
         print("turning front motor " +str(degree))
-        self.drivebase.turn(speed ,angle=degree, then=Stop.BRAKE, wait=True)
+        self.attachment_motor.run_angle(speed=speed, rotation_angle=degree, then=Stop.BRAKE, wait=True)
 
     def turn_back_motor(self, degree, speed):
         print("turning front motor " +str(degree))
-        self.drivebase.turn(speed ,degree, then=Stop.BRAKE, wait=True)
+        self.back_motor.run_angle(speed=speed, rotation_angle=degree, then=Stop.BRAKE, wait=True)
 
 
     
