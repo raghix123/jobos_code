@@ -39,9 +39,12 @@ class Bob:
         self.drivebase.straight(-distance, then=Stop.BRAKE, wait=True)
         self.drivebase.settings(straight_speed=default_speed)
 
-    def turn(self, degree):
+    def turn(self, degree, speed=200):
         print("turning " + str(degree))
+        default_settings = self.drivebase.settings()
+        self.drivebase.settings(default_settings[0], default_settings[1], speed, default_settings[3])
         self.drivebase.turn(degree, then=Stop.BRAKE, wait=True)
+        self.drivebase.settings(default_settings[0], default_settings[1], default_settings[2], default_settings[3])
     
     def turn_front_motor(self, degree, speed):
         print("turning front motor " +str(degree))
@@ -51,8 +54,6 @@ class Bob:
         print("turning front motor " +str(degree))
         self.back_motor.run_angle(speed=speed, rotation_angle=degree, then=Stop.BRAKE, wait=True)
 
-
-    
     def drive(self, speed, turn_rate):
         """Drive at specified speed and turn rate"""
         print(f"driving at speed {speed}, turn rate {turn_rate}")
