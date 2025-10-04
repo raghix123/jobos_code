@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import pybricks
 
 from pybricks.hubs import PrimeHub
@@ -36,3 +37,9 @@ def execute(bob: Bob):
     # bob.foreward(150,100)
     # bob.turn(-65,100)
     # bob.turn_front_motor(-50,100)
+=======
+from bob import Bob
+
+def execute(bob: Bob):
+    bob.foreward(200,100)
+>>>>>>> 82624e1 (Made code faster)

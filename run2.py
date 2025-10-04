@@ -9,7 +9,6 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
-    bob.attachment_motor.run_angle(300,300)
 
     bob.foreward(745,300)
 
