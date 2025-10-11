@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pybricks
 
 from pybricks.hubs import PrimeHub
@@ -36,26 +35,3 @@ def execute(bob: Bob):
     #bob.turn_front_motor(-400,300)
     #bob.turn(60,150)
     bob.foreward(-700,400)
-
-
-<<<<<<< Updated upstream
-    # bob.turn_front_motor(475,100)
-    # bob.foreward(270,100)
-    # bob.turn(-30,100)
-    # bob.foreward(150,100)
-    # bob.turn(-65,100)
-    # bob.turn_front_motor(-50,100)
-=======
-from bob import Bob
-
-def execute(bob: Bob):
-    bob.foreward(200,100)
->>>>>>> 82624e1 (Made code faster)
-=======
-    # # bob.turn_front_motor(475,100)
-    # # bob.foreward(270,100)
-    # # bob.turn(-30,100)
-    # # bob.foreward(150,100)
-    # # bob.turn(-65,100)
-    # # bob.turn_front_motor(-50,100)
->>>>>>> Stashed changes
