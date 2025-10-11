@@ -2,7 +2,7 @@ from bob import Bob
 
 def execute(bob: Bob):
 
-    bob.foreward(distance=700, speed=300)
+    bob.foreward(distance=700, speed=400)
 
     bob.turn(63,60)
 
@@ -12,17 +12,17 @@ def execute(bob: Bob):
 
     bob.turn_back_motor(420,300)
 
-    bob.reverse(220,300)
+    bob.reverse(220,400)
 
-    bob.turn(10,60)
+    bob.turn(10,100)
 
     bob.reverse(50,100)
 
     bob.turn_back_motor(-200,300)
 
-    bob.foreward(100,200)
+    bob.foreward(100,1000)
 
-    bob.turn(-45,60)
+    bob.turn(-45,100)
 
-    bob.reverse(600,400)
+    bob.reverse(600,1000)
 

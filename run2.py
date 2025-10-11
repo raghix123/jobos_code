@@ -10,19 +10,19 @@ from bob import Bob
 
 def execute(bob: Bob):
 
-    bob.foreward(745,300)
+    bob.foreward(745,1000)
 
-    bob.turn(-25)
+    bob.turn(-25,60)
 
-    bob.foreward(25,25)
+    bob.foreward(25,100)
 
     bob.attachment_motor.run_angle(-300, 300)
 
-    bob.reverse(25,25)
+    bob.reverse(25,200)
 
-    bob.turn(25)
+    bob.turn(25,70)
 
-    bob.reverse(700,400)
+    bob.reverse(700,1000)
 
 # Initialize hub
 # hub = PrimeHub()
