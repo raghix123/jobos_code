@@ -16,7 +16,7 @@ def execute(bob: Bob):
     bob.turn_back_motor(-200,2000)
     bob.turn_back_motor(200,2000)
     bob.turn(-90,60)
-    bob.turn_front_motor(350,300)
+    bob.turn_front_motor(350,200)
     bob.turn(-15,60)
     bob.foreward(60,60)
     bob.turn_front_motor(-200,100)
@@ -35,7 +35,7 @@ def execute(bob: Bob):
     bob.turn(20,60)
     #bob.turn_front_motor(-400,300)
     #bob.turn(60,150)
-    bob.foreward(-700,300)
+    bob.foreward(-700,400)
 
 
 <<<<<<< Updated upstream
