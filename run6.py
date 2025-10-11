@@ -29,4 +29,4 @@ def execute(bob: Bob):
     bob.turn(40)
     bob.reverse(200,300)
     bob.turn(-80)
-    bob.reverse(900,500)
+    bob.foreward(900,500)
