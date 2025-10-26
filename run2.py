@@ -11,44 +11,48 @@ from bob import Bob
 def execute(bob: Bob):
 
     #bob.foreward(745,1000)
-    bob.foreward(745,300)
+    bob.foreward(745,500)
 
     bob.turn(-25,60)
 
     #bob.foreward(25,100)
-    bob.foreward(20,25)
+    bob.foreward(20,100)
 
     bob.turn_front_motor(-300, 300)
 
-    bob.reverse(25,200)
+    bob.reverse(25,1000)
 
-    bob.turn(-25,70)
+    bob.turn(-25,100)
 
-    bob.reverse(100,100)
+    bob.reverse(100,1000)
 
-    bob.turn(-75,70)
+    bob.turn(-75,100)
 
-    bob.reverse(125,100)
+    bob.reverse(125,1000)
 
-    bob.turn(30,70)
+    bob.turn(78,100)
 
-    bob.reverse(120,100)
+    bob.reverse(100,1000)
 
     bob.turn_back_motor(450,500)
 
-    bob.turn(55,60)
+    bob.reverse(120,300)
+    
+    bob.turn_back_motor(150,-100)
 
-    bob.reverse(120,100)
+    bob.turn(-30)
 
-    # bob.turn_back_motor(300,-2000)
+    bob.turn(40)
 
-    # bob.foreward(400,200)
+    bob.foreward(250,1000)
 
-    # bob.turn(40)
+    bob.turn(80)
 
-    # bob.reverse(600,200)
+    bob.reverse(700,1000)
 
-    #bob.reverse(700,1000)
+    # bob.reverse(700,400)
+
+    
 
 # Initialize hub
 # hub = PrimeHub()
