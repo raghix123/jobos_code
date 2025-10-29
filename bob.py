@@ -3,6 +3,7 @@ from pybricks.pupdevices import Motor, ColorSensor
 from pybricks.parameters import Direction, Port, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait
+from pybricks.tools import StopWatch
 
 class Bob:
     def __init__(self):
@@ -30,7 +31,7 @@ class Bob:
     def set_speed_factor(self, factor):
         self.factor = factor
     
-    def _monitor_drivebase_completion(self, on_complete=None, on_stall=None, check_interval=20, timeout_ms=5000):
+    def _monitor_drivebase_completion(self, check_interval=5, timeout_ms=5000):
         """
         Utility function to monitor drivebase completion and stall status.
         
@@ -45,31 +46,26 @@ class Bob:
             'stalled' if stalled
             'timeout' if timed out
         """
-        from pybricks.tools import StopWatch
+        # Check if completed
+        if self.drivebase.done():
+            return
         
         stopwatch = StopWatch()
-        
         while stopwatch.time() < timeout_ms:
+            # Check if completed
+            if self.drivebase.done():
+                return
+
             # Check if stalled
             if self.drivebase.stalled():
                 print("Drivebase stalled detected")
                 self.drivebase.stop()  # Default behavior - always stop on stall
-                if on_stall:
-                    on_stall()
-                return 'stalled'
-            
-            # Check if completed
-            if self.drivebase.done():
-                print("Drivebase completed successfully")
-                if on_complete:
-                    on_complete()
-                return 'completed'
-            
+                return
+        
             wait(check_interval)
         
         # Timeout reached
         print("Drivebase monitoring timed out")
-        return 'timeout'
 
     def foreward(self, distance, speed):
         print("move fwd " + str(distance))
@@ -86,17 +82,9 @@ class Bob:
         print("move fwd safe " + str(distance))
         default_speed = self.drivebase.settings()[0]
         self.drivebase.settings(straight_speed=self.factor*speed)
-        
-        # Start the forward movement
         self.drivebase.straight(distance, then=Stop.BRAKE, wait=False)
-        
-        # Monitor completion with inline callbacks
-        result = self._monitor_drivebase_completion()
-        
-        # Restore original settings
+        self._monitor_drivebase_completion()
         self.drivebase.settings(straight_speed=default_speed)
-        
-        return result
 
     def reverse(self, distance, speed):
         print("move backward " + str(distance))
@@ -121,16 +109,8 @@ class Bob:
         default_settings = self.drivebase.settings()
         self.drivebase.settings(default_settings[0], default_settings[1], self.factor*speed, default_settings[3])
         self.drivebase.turn(degree, then=then, wait=False)
-        result = self._monitor_drivebase_completion(
-            check_interval=20,
-            timeout_ms=5000
-        )
-        
-        # Restore original settings
+        self._monitor_drivebase_completion()
         self.drivebase.settings(default_settings[0], default_settings[1], default_settings[2], default_settings[3])
-        
-        return result
-    
 
     def turn_front_motor(self, degree, speed, then=Stop.HOLD):
         print("turning front motor " +str(degree))
