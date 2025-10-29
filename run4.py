@@ -9,31 +9,41 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
-    bob.turn_front_motor(395,500)
-    bob.foreward(740,500)
-    bob.turn(-34,250)
-    wait(200)
-    bob.turn(130,100)
+    # bob.set_speed_factor(0.5)
 
-    bob.foreward(120, 100)
+    bob.turn_front_motor(395,500)
+    # Ready to run
+
+    bob.forward_safe(740,500)
+    bob.turn_safe(-34,250, then=Stop.COAST)
+    wait(200)
+    # Who lived here is done
+    
+    bob.turn_safe(130,100, then=Stop.HOLD)
+    # Forge is done
+
+    bob.forward_safe(120, 100)
+    # Boulders pushed
+
     bob.turn_front_motor(60,100, then=Stop.BRAKE)
     bob.turn_front_motor(10,20, then=Stop.HOLD)
-    bob.foreward(180,300)
-    
-    # Just knocked off the weighted thing
+    # Tool to pick up heavy thing down
 
-    bob.foreward(-155,300)
+    bob.forward_safe(180,300)
+    # Pick up and dropped
+
+    bob.forward_safe(-155,300)
     bob.turn_front_motor(-150,100)
-    bob.foreward(-155,300)
+    bob.forward_safe(-155,300)
     
     # Moved back    
     
-    bob.turn(-90,250)
-    bob.foreward(-30,250)
-    bob.turn(-20,100)
-    bob.foreward(12,250)
-    bob.turn(-40,100)
-    bob.foreward(-30,150)
+    bob.turn_safe(-90,250)
+    bob.forward_safe(-30,250)
+    bob.turn_safe(-20,100)
+    bob.forward_safe(12,250)
+    bob.turn_safe(-40,100)
+    bob.forward_safe(-30,150)
 
     # Moved into position
     for crash in range(5):    
@@ -41,7 +51,7 @@ def execute(bob: Bob):
         bob.turn_back_motor(-380,4000)
 
     # Got all the pills out    
-    bob.turn(45,250)
-    bob.foreward(-700,1000)
+    bob.turn_safe(45,250)
+    bob.forward_safe(-700,1000)
     
     # Back home
