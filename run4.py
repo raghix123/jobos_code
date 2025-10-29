@@ -10,16 +10,22 @@ from bob import Bob
 
 def execute(bob: Bob):
     bob.turn_front_motor(395,500)
+    # Ready
+    
     bob.foreward(740,500)
     bob.turn(-34,250)
     wait(200)
+    # Who lived here done
+    
     bob.turn(130,100)
+    # Forge releases
 
     bob.foreward(120, 100)
+    # Boulders recovered
+
     bob.turn_front_motor(60,100, then=Stop.BRAKE)
     bob.turn_front_motor(10,20, then=Stop.HOLD)
     bob.foreward(180,300)
-    
     # Just knocked off the weighted thing
 
     bob.foreward(-155,300)

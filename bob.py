@@ -44,11 +44,11 @@ class Bob:
         self.drivebase.straight(-distance, then=Stop.BRAKE, wait=True)
         self.drivebase.settings(straight_speed=default_speed)
 
-    def turn(self, degree, speed=200):
+    def turn(self, degree, speed=200, then=Stop.HOLD):
         print("turning " + str(degree))
         default_settings = self.drivebase.settings()
         self.drivebase.settings(default_settings[0], default_settings[1], self.factor*speed, default_settings[3])
-        self.drivebase.turn(degree, then=Stop.HOLD, wait=True)
+        self.drivebase.turn(degree, then=then, wait=True)
         self.drivebase.settings(default_settings[0], default_settings[1], default_settings[2], default_settings[3])
     
     def turn_front_motor(self, degree, speed, then=Stop.HOLD):
