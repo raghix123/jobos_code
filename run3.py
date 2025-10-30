@@ -1,5 +1,7 @@
 from bob import Bob
 
+from pybricks.tools import wait
+
 def execute(bob: Bob):
 
     bob.foreward(distance=700, speed=400)
@@ -8,7 +10,9 @@ def execute(bob: Bob):
 
     bob.foreward(distance=230, speed=200)
 
-    bob.turn_front_motor(300,300)
+    bob.turn_front_motor(175,200)
+
+    wait(200)
 
     bob.turn_back_motor(420,300)
 
