@@ -59,9 +59,13 @@ class Bob:
         print("turning front motor till stalled")
         self.attachment_motor.run_until_stalled(speed=self.factor*speed, duty_limit=duty_limit)
 
-    def turn_back_motor(self, degree, speed):
+    def turn_back_motor(self, degree, speed, then=Stop.BRAKE):
         print("turning front motor " +str(degree))
-        self.back_motor.run_angle(speed=self.factor*speed, rotation_angle=degree, then=Stop.BRAKE, wait=True)
+        self.back_motor.run_angle(speed=self.factor*speed, rotation_angle=degree, then=then, wait=True)
+
+    def turn_back_motor_until_stalled(self, speed, duty_limit=25):
+        print("turning back motor till stalled")
+        self.back_motor.run_until_stalled(speed=self.factor*speed, duty_limit=duty_limit)
 
     # def drive(self, speed, turn_rate):
     #     """Drive at specified speed and turn rate"""
