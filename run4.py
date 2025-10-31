@@ -9,14 +9,16 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
-    bob.turn_front_motor(395,500)
-    # Ready
 
-    bob.foreward(690, 500)
+    bob.foreward_and_front_motor(690, 500, 395, 500)
+    # bob.turn_front_motor(395,500)
+    # # Ready
+
+    # bob.foreward(690, 500)
     for hit in range(5):
         bob.turn_back_motor(degree=535, speed=5000, then=Stop.COAST)
         bob.turn_back_motor(degree=-535, speed=1000, then=Stop.COAST)
-    # Silo done
+    # # Silo done
     
     bob.foreward(40, 200)
     bob.turn(-24,250)
