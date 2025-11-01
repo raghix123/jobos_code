@@ -9,32 +9,28 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
+    bob.set_speed_factor(1)
+    bob.turn_front_motor(-40,100)
 
     bob.foreward(745,500)
 
-    bob.turn(-25,60)
+    bob.turn(-27,60)
 
-    bob.foreward(20,100)
+    bob.foreward(55,100)
 
     bob.turn_front_motor(-300, 300)
 
     bob.reverse(25,1000)
 
-    bob.turn(-25,100)
+    bob.turn(-70,100)
 
-    bob.reverse(100,1000)
-
-    bob.turn(-75,100)
-
-    bob.reverse(125,1000)
-
-    bob.turn(72,100)
-
-    bob.reverse(100,1000)
+    bob.reverse(250,200)
+    
+    bob.turn(65,60)
 
     bob.turn_back_motor(450,500)
 
-    bob.reverse(110,300)
+    bob.reverse(175,200)
     
     bob.turn_back_motor(-150,200)
 
