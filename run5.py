@@ -12,8 +12,8 @@ def execute(bob: Bob):
     bob.foreward(300,300)
     bob.turn(-90,200)
     bob.foreward(460,300)
-    bob.turn_back_motor(degree=150, speed=1000)
-    bob.turn_back_motor(degree=-150,speed=1000)
+    bob.turn_back_motor(degree=-180, speed=1000)
+    bob.turn_back_motor(degree=180,speed=1000)
     #challenge tip the scales A done
 
     bob.turn(-90,200)

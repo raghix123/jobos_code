@@ -2,7 +2,7 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor
 from pybricks.parameters import Direction, Port, Stop
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait
+from pybricks.tools import StopWatch, wait
 
 class Bob:
     def __init__(self):
@@ -67,7 +67,13 @@ class Bob:
         print("turning back motor till stalled")
         self.back_motor.run_until_stalled(speed=self.factor*speed, duty_limit=duty_limit)
 
-    def foreward_and_front_motor(self, foreward_distance, foreward_speed, motor_degree, motor_speed, turn_then=Stop.HOLD, foreward_then=Stop.BRAKE,):
+    def turn_back_motor_dc(self, dc, time):
+        print("turning back motor at dc " + str(dc) + " for " + str(time) + " ms")
+        self.back_motor.dc(dc)
+        wait(time)
+        self.back_motor.stop()
+
+    def foreward_and_front_motor(self, foreward_distance, foreward_speed, turn_degree, turn_speed, turn_then=Stop.HOLD, foreward_then=Stop.BRAKE,):
         print("moving fwd" + str(foreward_distance))
         default_speed = self.drivebase.settings()[0]
         self.drivebase.settings(straight_speed=self.factor*foreward_speed)
