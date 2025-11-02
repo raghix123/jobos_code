@@ -31,17 +31,15 @@ def execute(bob: Bob):
 
     bob.foreward(distance=-175, speed=200, then=Stop.BRAKE)
 
-    bob.turn_back_motor_dc(dc=-40, time=800)
+    bob.turn_back_motor_dc(dc=-60, time=200)
     wait(200)
     bob.turn(degree=-30, speed=100, then=Stop.COAST)
     wait(200)
     bob.turn(degree=30, speed=100, then=Stop.COAST)
     # Statue rebuild done
 
+    bob.foreward(distance=100, speed=100, then=Stop.COAST)
     bob.turn_back_motor_until_stalled(speed=450, duty_limit=40)
-    bob.drivebase.arc(radius=-200, distance=500, then=Stop.COAST)
+    bob.drivebase.arc(radius=-185, distance=500, then=Stop.COAST)
     bob.foreward(distance=500, speed=500)
-    # bob.foreward(distance=200, speed=200)
-    # bob.turn(degree=40, speed=200, then=Stop.BRAKE)
-    # bob.foreward(distance=-800, speed=800)
-    # # # Back home
+    # Back home
