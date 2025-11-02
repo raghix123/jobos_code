@@ -10,48 +10,38 @@ from bob import Bob
 
 def execute(bob: Bob):
     bob.turn_front_motor(-40,100)
+    # Ready
 
     bob.foreward(745,500)
+    # Soil deposit #1 done
 
     bob.turn(-27,60)
-
     bob.foreward(55,100)
-
     bob.turn_front_motor(-300, 300)
+    # Topsoil removed
 
     bob.foreward(distance=-25, speed=1000, then=Stop.HOLD)
+    # Soil deposit #2 done
 
-    bob.turn(-70,100, Stop.HOLD)
+    bob.turn(degree=-70, speed=100, then=Stop.HOLD)
+    bob.foreward(distance=-250, speed=200, then=Stop.HOLD)
+    bob.turn(degree=65, speed=60, then=Stop.BRAKE)
+    bob.turn_back_motor_until_stalled(speed=450, duty_limit=40)
+    # Lifting arm down
 
-    bob.foreward(-250,200, Stop.HOLD)
-    
-    bob.turn(65,60, Stop.HOLD)
+    bob.foreward(distance=-175, speed=200, then=Stop.BRAKE)
 
-    bob.turn_back_motor(450,500, Stop.HOLD)
-
-    bob.foreward(distance=-175, speed=200, then=Stop.HOLD)
-
-    bob.turn_back_motor(-225, 100, Stop.COAST)
-    bob.turn_back_motor(degree=-225, speed=5000, then=Stop.COAST)
-
-    bob.turn(degree=-10, speed=100, then=Stop.COAST)
+    bob.turn_back_motor_dc(dc=-40, time=800)
     wait(200)
+    bob.turn(degree=-30, speed=100, then=Stop.COAST)
+    wait(200)
+    bob.turn(degree=30, speed=100, then=Stop.COAST)
     # Statue rebuild done
 
-    bob.foreward(distance=175, speed=200)
-    bob.turn(degree=65, speed=200, then=Stop.BRAKE)
-    bob.foreward(distance=-800, speed=800)
-    # Back home
-    
-
-    # bob.turn(40)
-
-    # bob.foreward(125,1000)
-
-    # bob.turn(-40)
-
-    # bob.foreward(300,1000)
-
-    # bob.turn(-70)
-
-    # bob.foreward(900,1000)
+    bob.turn_back_motor_until_stalled(speed=450, duty_limit=40)
+    bob.drivebase.arc(radius=-200, distance=500, then=Stop.COAST)
+    bob.foreward(distance=500, speed=500)
+    # bob.foreward(distance=200, speed=200)
+    # bob.turn(degree=40, speed=200, then=Stop.BRAKE)
+    # bob.foreward(distance=-800, speed=800)
+    # # # Back home

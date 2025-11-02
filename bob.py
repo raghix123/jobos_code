@@ -80,8 +80,8 @@ class Bob:
         self.drivebase.straight(foreward_distance, then=Stop.BRAKE, wait=False)
         
 
-        print("turning front motor " +str(motor_degree))
-        self.attachment_motor.run_angle(speed=self.factor*motor_speed, rotation_angle=motor_degree, then=turn_then, wait=True)
+        print("turning front motor " +str(turn_degree))
+        self.attachment_motor.run_angle(speed=self.factor*turn_speed, rotation_angle=turn_degree, then=turn_then, wait=True)
 
 
         while not self.drivebase.done():
