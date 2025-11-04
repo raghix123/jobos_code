@@ -7,7 +7,10 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
+    bob.back_motor.reset_angle(0)
+
     bob.foreward_and_front_motor(foreward_distance=660, foreward_speed=500, turn_degree=395, turn_speed=500)
+    #bob.foreward(distance=660, speed=500)
     # Ready
 
     bob.back_motor.reset_angle(0)
@@ -22,10 +25,13 @@ def execute(bob: Bob):
     # Who lived here done
     
     bob.turn(105,100)
+    bob.turn(-65, 100)
+    bob.turn(65, 100)
     # Forge releases
 
+
     bob.foreward(120, 100)
-    # Boulders recovered
+    # # Boulders recovered
 
     bob.turn_front_motor(60,100, then=Stop.BRAKE)
     bob.turn_front_motor(10,20, then=Stop.HOLD)
@@ -38,25 +44,4 @@ def execute(bob: Bob):
     bob.foreward(distance=-250, speed=300, then=Stop.BRAKE)
     bob.turn(90)
     bob.foreward(740,500)
-
-    # # bob.turn(-170, 200)
-    # # bob.foreward(-140, 200)
-    
-    # # # Moved back
-    # # # bob.turn(-90,250)
-    # # # bob.foreward(-30,250)
-    # # # bob.turn(-20,100)
-    # # # bob.foreward(12,250)
-    # # # bob.turn(-40,100)
-    # # # bob.foreward(-30,150)
-
-    # # # Moved into position
-    # # for crash in range(5):    
-    # #     bob.turn_back_motor(380,4000)
-    # #     bob.turn_back_motor(-380,4000)
-
-    # # # # Got all the pills out    
-    # # # bob.turn(45,250)
-    # # # bob.foreward(-700,1000)
-    
-    # # # # Back home
+    # Home

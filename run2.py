@@ -20,8 +20,17 @@ def execute(bob: Bob):
     bob.turn_front_motor(-300, 300)
     # Topsoil removed
 
-    bob.foreward(distance=-25, speed=1000, then=Stop.HOLD)
+
+    bob.foreward(distance=-10, speed=500, then=Stop.HOLD)
+    bob.turn(degree=30, speed=100, then=Stop.HOLD)
+    bob.foreward(distance=-400, speed=750, then=Stop.HOLD)
     # Soil deposit #2 done
+
+    # Compensate to get back to same position as old code
+    bob.foreward(distance=400, speed=750, then=Stop.HOLD)
+    bob.turn(degree=-30, speed=100, then=Stop.HOLD)
+    bob.foreward(distance=10, speed=500, then=Stop.HOLD)
+    bob.foreward(distance=-25, speed=1000, then=Stop.HOLD)
 
     bob.turn(degree=-70, speed=100, then=Stop.HOLD)
     bob.foreward(distance=-250, speed=200, then=Stop.HOLD)
