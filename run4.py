@@ -8,14 +8,12 @@ from bob import Bob
 
 def execute(bob: Bob):
     bob.back_motor.reset_angle(0)
-
     bob.foreward_and_front_motor(foreward_distance=660, foreward_speed=500, turn_degree=395, turn_speed=500)
-    #bob.foreward(distance=660, speed=500)
     # Ready
 
     bob.back_motor.reset_angle(0)
     for hit in range(5):
-        bob.turn_back_motor_dc(dc=70, time=200)
+        bob.turn_back_motor_dc(dc=80, time=200)
         bob.back_motor.run_target(speed=500, target_angle=0, then = Stop.BRAKE)
     # Silo done
     
@@ -28,7 +26,6 @@ def execute(bob: Bob):
     bob.turn(-65, 100)
     bob.turn(65, 100)
     # Forge releases
-
 
     bob.foreward(120, 100)
     # # Boulders recovered
