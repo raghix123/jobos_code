@@ -8,13 +8,13 @@ from bob import Bob
 
 def execute(bob: Bob):
     bob.back_motor.reset_angle(0)
+    bob.attachment_motor.reset_angle(0)
     bob.foreward_and_front_motor(foreward_distance=660, foreward_speed=500, turn_degree=395, turn_speed=500)
     # Ready
 
-    bob.back_motor.reset_angle(0)
     for hit in range(5):
         bob.turn_back_motor_dc(dc=80, time=200)
-        bob.back_motor.run_target(speed=500, target_angle=0, then = Stop.BRAKE)
+        bob.back_motor.run_target(speed=400, target_angle=0, then = Stop.BRAKE)
     # Silo done
     
     bob.foreward(70, 200)
@@ -30,8 +30,7 @@ def execute(bob: Bob):
     bob.foreward(120, 100)
     # # Boulders recovered
 
-    bob.turn_front_motor(60,100, then=Stop.BRAKE)
-    bob.turn_front_motor(10,20, then=Stop.HOLD)
+    bob.attachment_motor.run_target(speed=500, target_angle=470, then=Stop.HOLD)
     bob.foreward(210,300)
     # Heavy lifting done
 
