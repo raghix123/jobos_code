@@ -28,7 +28,7 @@ def execute(bob: Bob):
     bob.foreward(distance=-510, speed=1500)
     bob.turn(degree=44, speed=200)
     bob.turn_front_motor_until_stalled(speed=300, duty_limit=30)
-    bob.turn_front_motor(degree=-100, speed=300)
+    bob.turn_front_motor(degree=-80, speed=300)
     bob.foreward(distance=70, speed=200)
     bob.turn(degree=-38, speed=200)
     # #challenge What's on Sale B done
