@@ -59,6 +59,12 @@ class Bob:
         print("turning front motor till stalled")
         self.attachment_motor.run_until_stalled(speed=self.factor*speed, duty_limit=duty_limit)
 
+    def turn_front_motor_dc(self, dc, time):
+        print("turning front motor at dc " + str(dc) + " for " + str(time) + " ms")
+        self.attachment_motor.dc(dc)
+        wait(time)
+        self.attachment_motor.stop()
+
     def turn_back_motor(self, degree, speed, then=Stop.BRAKE):
         print("turning front motor " +str(degree))
         self.back_motor.run_angle(speed=self.factor*speed, rotation_angle=degree, then=then, wait=True)
