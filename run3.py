@@ -17,6 +17,7 @@ def execute(bob: Bob):
     # Brush picked up
 
     bob.arc(radius=90, angle=90, then=Stop.BRAKE)
+    bob.foreward_and_front_motor(foreward_distance=300, foreward_speed=500, turn_degree=180, turn_speed=200)
 
 
     # bob.drivebase.arc(radius=90, angle=90)

@@ -33,6 +33,7 @@ while True:
 
     # LEFT button executes the current file
     elif Button.LEFT in pressed:
+        wait(500)
         if current_index == 1:
             run1.execute(bob=bob)
         elif current_index == 2:
