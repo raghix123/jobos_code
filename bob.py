@@ -44,6 +44,12 @@ class Bob:
         self.drivebase.straight(-distance, then=Stop.BRAKE, wait=True)
         self.drivebase.settings(straight_speed=default_speed)
 
+    def arc(self, radius, angle, speed=200, then=Stop.HOLD):
+        default_speed = self.drivebase.settings()[0]
+        self.drivebase.settings(straight_speed=self.factor*speed)
+        self.drivebase.arc(radius=radius, angle=angle, then=then)
+        self.drivebase.settings(straight_speed=default_speed)
+
     def turn(self, degree, speed=200, then=Stop.HOLD):
         print("turning " + str(degree))
         default_settings = self.drivebase.settings()
