@@ -34,13 +34,13 @@ def execute(bob: Bob):
 
     bob.turn(degree=-70, speed=100, then=Stop.HOLD)
     bob.foreward(distance=-250, speed=200, then=Stop.HOLD)
-    bob.turn(degree=65, speed=60, then=Stop.BRAKE)
+    bob.turn(degree=64, speed=60, then=Stop.BRAKE)
     bob.turn_back_motor_until_stalled(speed=450, duty_limit=40)
     # Lifting arm down
 
     bob.foreward(distance=-175, speed=200, then=Stop.BRAKE)
 
-    bob.turn_back_motor_dc(dc=-60, time=200)
+    bob.turn_back_motor_dc(dc=-100, time=150)
     wait(200)
     bob.turn(degree=-30, speed=100, then=Stop.COAST)
     wait(200)
@@ -49,6 +49,6 @@ def execute(bob: Bob):
 
     bob.foreward(distance=100, speed=100, then=Stop.COAST)
     bob.turn_back_motor_until_stalled(speed=450, duty_limit=40)
-    bob.drivebase.arc(radius=-185, distance=500, then=Stop.COAST)
-    bob.foreward(distance=500, speed=500)
+    bob.drivebase.arc(radius=-195, distance=500, then=Stop.COAST)
+    bob.foreward(distance=618, speed=500)
     # Back home
