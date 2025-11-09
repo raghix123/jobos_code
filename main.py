@@ -13,6 +13,23 @@ total_number_of_runs = 10
 current_index = 1
 hub.display.number(current_index)
 
+def calibrate_and_wait_until_still():
+    # 1. Reset immediately when the user presses the button
+    hub.imu.reset_heading(angle=0)
+    bob.drivebase.reset()
+
+    # 2. Visually indicate we are waiting for stillness
+    hub.display.text("...") 
+    
+    # 3. Wait in a loop UNTIL the sensor reports it is stationary
+    # This might take 0.2s or 1.5s depending on how fast you move your hand.
+    while not hub.imu.stationary():
+        wait(10) 
+
+    # 4. We are now still. Proceed with the run.
+    hub.speaker.beep(frequency=1000, duration=100)
+    wait(100) # Short final confirmation delay
+
 while True:
     pressed = hub.buttons.pressed()
     
@@ -33,7 +50,7 @@ while True:
 
     # LEFT button executes the current file
     elif Button.LEFT in pressed:
-        wait(500)
+        calibrate_and_wait_until_still()
         if current_index == 1:
             run1.execute(bob=bob)
         elif current_index == 2:
