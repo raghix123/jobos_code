@@ -22,19 +22,19 @@ def execute(bob: Bob):
     wait(200)
     # Who lived here done
     
-    bob.turn(105,100)
+    bob.turn(105, 100)
     bob.turn(-65, 100)
-    bob.turn(65, 100)
+    bob.turn(65, 50)
     # Forge releases
 
     bob.foreward(120, 100)
     # # Boulders recovered
 
     bob.attachment_motor.run_target(speed=200, target_angle=470, then=Stop.HOLD)
-    bob.foreward(distance=210, speed=300)
+    bob.foreward(distance=210, speed=500)
     # Heavy lifting done
 
-    bob.turn_front_motor(degree=-90, speed=100, then=Stop.BRAKE)
+    bob.turn_front_motor(degree=-90, speed=500, then=Stop.BRAKE)
     # Lifting the arm
 
     bob.foreward(distance=-270, speed=300, then=Stop.BRAKE)
