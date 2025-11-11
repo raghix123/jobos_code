@@ -17,7 +17,7 @@ def execute(bob: Bob):
         bob.back_motor.run_target(speed=400, target_angle=0, then = Stop.BRAKE)
     # Silo done
     
-    bob.foreward(90, 200)
+    bob.foreward(85, 200)
     bob.turn(degree=-24, speed=250, then=Stop.COAST)
     wait(200)
     # Who lived here done

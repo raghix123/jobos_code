@@ -28,7 +28,6 @@ def calibrate_and_wait_until_still():
 
     # 4. We are now still. Proceed with the run.
     hub.speaker.beep(frequency=1000, duration=100)
-    wait(100) # Short final confirmation delay
 
 while True:
     pressed = hub.buttons.pressed()
