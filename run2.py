@@ -22,8 +22,8 @@ def execute(bob: Bob):
 
     bob.foreward(distance=-10, speed=200, then=Stop.HOLD)
     bob.turn(degree=30, speed=100, then=Stop.HOLD)
-    bob.foreward(distance=-400, speed=300, then=Stop.HOLD)
-    bob.foreward(distance=400, speed=300, then=Stop.HOLD)
+    bob.foreward(distance=-400, speed=450, then=Stop.HOLD)
+    bob.foreward(distance=400, speed=450, then=Stop.HOLD)
     # Soil deposits cleared
 
     bob.turn(degree=-30, speed=100, then=Stop.HOLD)
