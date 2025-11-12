@@ -19,7 +19,7 @@ def calibrate_and_wait_until_still():
     bob.drivebase.reset()
 
     # 2. Visually indicate we are waiting for stillness
-    hub.display.text("...") 
+    hub.display.text(".") 
     
     # 3. Wait in a loop UNTIL the sensor reports it is stationary
     # This might take 0.2s or 1.5s depending on how fast you move your hand.
