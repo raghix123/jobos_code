@@ -50,6 +50,24 @@ class Bob:
         self.drivebase.arc(radius=radius, angle=angle, then=then)
         self.drivebase.settings(straight_speed=default_speed)
 
+    def reset_imu_and_wait(self, timeout_ms=2000):
+        """Reset IMU heading and wait for stabilization for better accuracy.
+        IMU needs at least 1 second of stillness to calibrate properly."""
+        print("resetting IMU and waiting for stabilization")
+        self.hub.imu.reset_heading(angle=-24)
+        self.drivebase.reset()
+        # Wait for IMU to detect stationary (needed for calibration)
+        # This can take 0.2s to 1.5s, so we use a timeout to prevent infinite loops
+        elapsed = 0
+        while not self.hub.imu.stationary() and elapsed < timeout_ms:
+            wait(10)
+            elapsed += 10
+        # Additional wait to ensure calibration completes (IMU needs ~1s total)
+        if elapsed < 1000:
+            wait(1000 - elapsed)  # Ensure at least 1 second total
+        else:
+            wait(200)  # If already waited long, just a bit more
+
     def turn(self, degree, speed=200, then=Stop.HOLD):
         print("turning " + str(degree))
         default_settings = self.drivebase.settings()

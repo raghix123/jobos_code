@@ -21,10 +21,14 @@ def execute(bob: Bob):
     bob.turn(degree=-24, speed=250, then=Stop.COAST)
     wait(200)
     # Who lived here done
-    
-    bob.turn(105, 100)
-    bob.turn(-65, 100)
+    bob.reset_imu_and_wait()
+    bob.turn(105, 100, then=Stop.BRAKE)
+    bob.turn(-65, 100, then=Stop.BRAKE)
     bob.turn(65, 50)
+    # Turn to 90 degrees from original starting point (0)
+    # IMU was reset to -24, so target is 90 - (-24) = 114 from reset point
+    bob.turn(114 - bob.hub.imu.heading(), 50)
+    
     # Forge releases
 
     bob.foreward(120, 100)
