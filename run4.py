@@ -12,7 +12,7 @@ def execute(bob: Bob):
     bob.foreward_and_front_motor(foreward_distance=640, foreward_speed=500, turn_degree=395, turn_speed=200)
     # Ready
 
-    for hit in range(5):
+    for hit in range(4):
         bob.turn_back_motor_dc(dc=80, time=200)
         bob.back_motor.run_target(speed=400, target_angle=0, then = Stop.BRAKE)
     # Silo done
@@ -39,5 +39,5 @@ def execute(bob: Bob):
 
     bob.foreward(distance=-270, speed=300, then=Stop.BRAKE)
     bob.turn(90)
-    bob.foreward(740,500)
+    bob.arc(radius=-775, angle=160, speed=400)
     # Home

@@ -9,7 +9,7 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
-    bob.turn_front_motor(degree=-60, speed=100)
+    bob.turn_front_motor(degree=-50, speed=100)
     # Ready
 
     bob.arc(radius=-690, angle=25, then=Stop.BRAKE)
@@ -27,6 +27,8 @@ def execute(bob: Bob):
     bob.turn(degree=-35, speed=200, then=Stop.BRAKE)
     # Tip the scales B done
 
+    bob.arc(radius=-750, angle=-60, speed=400, then=Stop.COAST)
+    return
     bob.arc(radius=-800, angle=-60, speed=1000, then=Stop.COAST)
     return
     
