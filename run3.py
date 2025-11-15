@@ -4,9 +4,9 @@ from pybricks.tools import wait
 from pybricks.parameters import Stop
 
 def execute(bob: Bob):
-    bob.foreward(distance=320, speed=200, then=Stop.BRAKE)
+    bob.foreward(distance=320, speed=300, then=Stop.BRAKE)
     bob.arc(radius=550, angle=50, then=Stop.BRAKE)
-    bob.turn_front_motor_dc(dc=60, time=600)
+    bob.turn_front_motor_dc(dc=70, time=650)
     wait(1000)
     bob.turn_front_motor(degree=-180, speed=200, then=Stop.COAST)
     # Minecart sent
