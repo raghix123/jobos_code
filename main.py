@@ -3,6 +3,7 @@ from pybricks.parameters import Button
 from pybricks.tools import wait
 import run1, run2, run3, run4, run5, run6, run7, run8, run9, run10
 from bob import Bob
+import logger
 
 
 hub = PrimeHub()
@@ -50,6 +51,7 @@ while True:
     # LEFT button executes the current file
     elif Button.LEFT in pressed:
         calibrate_and_wait_until_still()
+        logger.start_logging(bob)  # Start logging before the run
         if current_index == 1:
             run1.execute(bob=bob)
         elif current_index == 2:
@@ -70,6 +72,7 @@ while True:
             run9.execute(bob=bob) 
         elif current_index == 10:
             run10.execute(bob=bob)     
+        logger.stop_logging()  # Stop logging after the run completes
         wait(300)
 
     wait(50)
