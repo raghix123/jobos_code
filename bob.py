@@ -54,7 +54,9 @@ class Bob:
         print("turning " + str(degree))
         default_settings = self.drivebase.settings()
         self.drivebase.settings(default_settings[0], default_settings[1], self.factor*speed, default_settings[3])
-        self.drivebase.turn(degree, then=then, wait=True)
+        self.drivebase.turn(0.7*degree, then=then, wait=True)
+        self.drivebase.settings(default_settings[0], default_settings[1], 20, default_settings[3])
+        self.drivebase.turn(0.3*degree, then=then, wait=True)
         self.drivebase.settings(default_settings[0], default_settings[1], default_settings[2], default_settings[3])
     
     def turn_front_motor(self, degree, speed, then=Stop.HOLD):
