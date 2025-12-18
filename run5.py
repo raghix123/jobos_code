@@ -12,8 +12,8 @@ def execute(bob: Bob):
     bob.turn_front_motor(degree=-50, speed=100)
     # Ready
 
-    bob.arc(radius=-690, angle=25, then=Stop.BRAKE)
-    bob.turn(degree=-60, speed=75, then=Stop.BRAKE)
+    bob.foreward(distance=375, speed=200)
+    bob.turn(degree=-45, speed=75, then=Stop.BRAKE)
     # Marketwares solved
 
     bob.foreward(distance=365, speed=200)
