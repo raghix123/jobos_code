@@ -10,8 +10,8 @@ from pybricks.tools import wait
 hub = PrimeHub()
 
 # Drive motors
-left_motor = Motor(Port.A)
-right_motor = Motor(Port.E, positive_direction=Direction.COUNTERCLOCKWISE)
+left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
+right_motor = Motor(Port.F)
 
 # Attachment motor (with small fixture + gears)
 attachment_motor = Motor(Port.C)
