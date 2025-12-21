@@ -9,7 +9,7 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
-    bob.foreward(450,200)
-    bob.foreward(-150,200)
-    bob.foreward(250,200)
-    bob.foreward(-600,500)
+    yield from bob.foreward(450,200)
+    yield from bob.foreward(-150,200)
+    yield from bob.foreward(250,200)
+    yield from bob.foreward(-600,500)

@@ -1,136 +1,123 @@
-from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor
-from pybricks.parameters import Direction, Port, Stop
+from pybricks.pupdevices import Motor
+from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
-from pybricks.tools import StopWatch, wait
+from pybricks.tools import wait
 
 class Bob:
-    def __init__(self):
-        # Hub
-        self.hub = PrimeHub()
-        self.hub.speaker.volume(100)
+    def __init__(self, hub):
+        self.hub = hub
 
-        # Motors
+        # --- MOTORS (adjust ports if needed) ---
         self.left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
         self.right_motor = Motor(Port.F)
         self.attachment_motor = Motor(Port.D)
         self.back_motor = Motor(Port.C)
 
-        # Drive base (wheels on B & F, 89mm wheels, 152mm axle track)
+        # --- DRIVEBASE (use your real values if different) ---
         self.drivebase = DriveBase(
             self.left_motor,
             self.right_motor,
-            wheel_diameter=89,
-            axle_track=152,
+            wheel_diameter=87.0,
+            axle_track=114.3,
         )
-        self.drivebase.use_gyro(True)
 
-        self.factor = 1
-
-    def set_speed_factor(self, factor):
-        self.factor = factor
+    # ---------------- PRIMITIVES ----------------
 
     def foreward(self, distance, speed, then=Stop.BRAKE):
-        print("move fwd " + str(distance))
-        default_speed = self.drivebase.settings()[0]
-        self.drivebase.settings(straight_speed=self.factor*speed)
-        self.drivebase.straight(distance, then=then, wait=True)
-        self.drivebase.settings(straight_speed=default_speed)
+        default = self.drivebase.settings()
+        self.drivebase.settings(straight_speed=speed)
+        self.drivebase.straight(distance, then=then, wait=False)
+        while not self.drivebase.done():
+            yield
+        self.drivebase.settings(*default)
 
-    def reverse(self, distance, speed):
-        print("move backward " + str(distance))
-        default_speed = self.drivebase.settings()[0]
-        self.drivebase.settings(straight_speed=self.factor*speed)
-        self.drivebase.straight(-distance, then=Stop.BRAKE, wait=True)
-        self.drivebase.settings(straight_speed=default_speed)
+    def turn(self, degree, speed=200, then=Stop.BRAKE):
+        default = self.drivebase.settings()
+        self.drivebase.settings(default[0], default[1], speed, default[3])
+        self.drivebase.turn(degree, then=then, wait=False)
+        while not self.drivebase.done():
+            yield
+        self.drivebase.settings(*default)
 
-    def arc(self, radius, angle, speed=200, then=Stop.HOLD):
-        default_speed = self.drivebase.settings()[0]
-        self.drivebase.settings(straight_speed=self.factor*speed)
-        self.drivebase.arc(radius=radius, angle=angle, then=then)
-        self.drivebase.settings(straight_speed=default_speed)
+    def arc(self, radius, angle, speed):
+        default = self.drivebase.settings()
+        self.drivebase.settings(straight_speed=speed)
+        self.drivebase.curve(radius, angle, wait=False)
+        while not self.drivebase.done():
+            yield
+        self.drivebase.settings(*default)
 
-    def turn(self, degree, speed=200, then=Stop.HOLD):
-        print("turning " + str(degree))
-        default_settings = self.drivebase.settings()
-        self.drivebase.settings(default_settings[0], default_settings[1], self.factor*speed, default_settings[3])
-        self.drivebase.turn(0.7*degree, then=then, wait=True)
-        self.drivebase.settings(default_settings[0], default_settings[1], 20, default_settings[3])
-        self.drivebase.turn(0.3*degree, then=then, wait=True)
-        self.drivebase.settings(default_settings[0], default_settings[1], default_settings[2], default_settings[3])
-    
+    def wait(self, ms):
+        elapsed = 0
+        while elapsed < ms:
+            yield
+            wait(10)
+            elapsed += 10
+
+    # ---------------- MOTOR HELPERS ----------------
+
     def turn_front_motor(self, degree, speed, then=Stop.HOLD):
-        print("turning front motor " +str(degree))
-        self.attachment_motor.run_angle(speed=self.factor*speed, rotation_angle=degree, then=then, wait=True)
+        self.attachment_motor.run_angle(
+            speed=speed, rotation_angle=degree, then=then, wait=False
+        )
+        while not self.attachment_motor.done():
+            yield
 
-    def turn_front_motor_until_stalled(self, speed, duty_limit=25):
-        print("turning front motor till stalled")
-        self.attachment_motor.run_until_stalled(speed=self.factor*speed, duty_limit=duty_limit)
+    def back_motor_run_target(self, speed, target_angle, then=Stop.BRAKE):
+        self.back_motor.run_target(
+            speed=speed, target_angle=target_angle, then=then, wait=False
+        )
+        while not self.back_motor.done():
+            yield
 
-    def turn_front_motor_dc(self, dc, time):
-        print("turning front motor at dc " + str(dc) + " for " + str(time) + " ms")
-        self.attachment_motor.dc(dc)
-        wait(time)
-        self.attachment_motor.stop()
-
-    def turn_back_motor(self, degree, speed, then=Stop.BRAKE):
-        print("turning front motor " +str(degree))
-        self.back_motor.run_angle(speed=self.factor*speed, rotation_angle=degree, then=then, wait=True)
-
-    def turn_back_motor_until_stalled(self, speed, duty_limit=25):
-        print("turning back motor till stalled")
-        self.back_motor.run_until_stalled(speed=self.factor*speed, duty_limit=duty_limit)
-
-    def turn_back_motor_dc(self, dc, time):
-        print("turning back motor at dc " + str(dc) + " for " + str(time) + " ms")
+    def turn_back_motor_dc(self, dc, time_ms):
         self.back_motor.dc(dc)
-        wait(time)
+        elapsed = 0
+        while elapsed < time_ms:
+            yield
+            wait(10)
+            elapsed += 10
         self.back_motor.stop()
 
-    def foreward_and_front_motor(self, foreward_distance, foreward_speed, turn_degree, turn_speed, turn_then=Stop.HOLD, foreward_then=Stop.BRAKE,):
-        print("moving fwd" + str(foreward_distance))
-        default_speed = self.drivebase.settings()[0]
-        self.drivebase.settings(straight_speed=self.factor*foreward_speed)
+    # ---------------- COMPOSITES ----------------
+
+    def foreward_and_front_motor(
+        self, foreward_distance, foreward_speed, turn_degree, turn_speed
+    ):
+        default = self.drivebase.settings()
+        self.drivebase.settings(straight_speed=foreward_speed)
+
         self.drivebase.straight(foreward_distance, then=Stop.BRAKE, wait=False)
-        
+        self.attachment_motor.run_angle(
+            speed=turn_speed, rotation_angle=turn_degree, wait=False
+        )
 
-        print("turning front motor " +str(turn_degree))
-        self.attachment_motor.run_angle(speed=self.factor*turn_speed, rotation_angle=turn_degree, then=turn_then, wait=True)
+        while not (
+            self.drivebase.done()
+            and self.attachment_motor.done()
+        ):
+            yield
 
+        self.drivebase.settings(*default)
 
-        while not self.drivebase.done():
-            wait(0.5)
-        
-        self.drivebase.settings(straight_speed=default_speed)
+    def log_header(self):
+        return (
+            "t_ms,"
+            "heading,"
+            "distance,"
+            "left_angle,"
+            "right_angle,"
+            "front_angle,"
+            "rear_angle"
+        )
 
-    def turn_and_back_motor(self, turn_angle, turn_speed, motor_degree, motor_speed, then=Stop.HOLD):
-        print("turning " + str(turn_angle))
-        default_settings = self.drivebase.settings()
-        self.drivebase.settings(default_settings[0], default_settings[1], self.factor*turn_speed, default_settings[3])
-        self.drivebase.turn(turn_angle, then=then, wait=False)
-    
-
-        print("turning front motor " +str(motor_degree))
-        self.back_motor.run_angle(speed=self.factor*motor_speed, rotation_angle=motor_degree, then=then, wait=True)
-        
-        while not self.drivebase.done():
-            wait(0.5)
-        
-        self.drivebase.settings(default_settings[0], default_settings[1], default_settings[2], default_settings[3])
-
-            
-    # def drive(self, speed, turn_rate):
-    #     """Drive at specified speed and turn rate"""
-    #     print(f"driving at speed {speed}, turn rate {turn_rate}")
-    #     self.drivebase.drive(self.factor*speed, turn_rate)
-    
-    # def stop(self):
-    #     """Stop the drivebase"""
-    #     print("stopping")
-    #     self.drivebase.stop()
-    
-    # def attachment_run_angle(self, speed, angle):
-    #     """Run attachment motor at specified speed for specified angle"""
-    #     print(f"attachment motor running at speed {speed} for angle {angle}")
-    #     self.attachment_motor.run_angle(self.factor*speed, angle)
-        
+    def log_row(self, t_ms):
+        return ",".join([
+            str(t_ms),
+            str(self.hub.imu.heading()),
+            str(self.drivebase.distance()),
+            str(self.left_motor.angle()),
+            str(self.right_motor.angle()),
+            str(self.attachment_motor.angle()),
+            str(self.back_motor.angle()),
+        ])
