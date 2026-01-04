@@ -12,7 +12,7 @@ def execute(bob: Bob):
     bob.turn_front_motor(degree=-50, speed=100)
     # Ready
 
-    bob.foreward(distance=375, speed=200)
+    bob.foreward(distance=305, speed=200)
     bob.turn(degree=-45, speed=75, then=Stop.BRAKE)
     # Marketwares solved
 
@@ -24,7 +24,7 @@ def execute(bob: Bob):
     bob.foreward(distance=-210, speed=200)
     bob.turn(degree=32, speed=75, then=Stop.BRAKE)
     bob.turn_front_motor(degree=60, speed=100)
-    bob.turn(degree=-35, speed=75, then=Stop.HOLD)
+    bob.turn(degree=-45, speed=75, then=Stop.HOLD)
     wait(500)
     # Tip the scales B done
 

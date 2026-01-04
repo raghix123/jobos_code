@@ -18,7 +18,7 @@ def execute(bob: Bob):
     # Silo done
     
     bob.foreward(85, 200)
-    bob.turn(degree=-24, speed=250, then=Stop.COAST)
+    bob.turn(degree=-30, speed=250, then=Stop.COAST)
     wait(200)
     # Who lived here done
     
