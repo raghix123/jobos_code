@@ -1,2 +1,1 @@
-# jobos_code
-Coding jobo the robot
+Public FIRST LEGO League robot code by Team Bob the Builders. This repository contains the code for our robot, Jobo, developed using Pybricks on the LEGO SPIKE Prime hub. The project focuses on a fully open-source, modular architecture with precise drivetrain control and reliable autonomous routines, enabling fast iteration, flexible attachment integration, and consistent competition performance. The primary development branch is jobos_code, and all related documentation, designs, and resources are openly available.
