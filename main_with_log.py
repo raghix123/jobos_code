@@ -1,3 +1,3 @@
 from runner import start
 
-start(log=False)
+start(log=True)
