@@ -9,29 +9,29 @@ from pybricks.tools import wait, multitask
 from bob import Bob
 
 def execute(bob: Bob):
-    bob.turn_front_motor(200,100)
+    yield from bob.turn_front_motor(200,100)
     # Ready to start
 
-    bob.foreward(800,200)
-    bob.turn_back_motor(-500,200)
+    yield from bob.foreward(800,200)
+    yield from bob.turn_back_motor(-500,200)
     # Back attachment ready for minecart
-    bob.foreward(150,100)
-    bob.turn_back_motor(200,100)
-    bob.turn_back_motor(-200,100)
+    yield from bob.foreward(150,100)
+    yield from bob.turn_back_motor(200,100)
+    yield from bob.turn_back_motor(-200,100)
     # Minecart done
 
-    bob.foreward(-160,200)
-    bob.turn_back_motor(400, 400)
-    bob.turn(-47,100)
-    bob.foreward(-100,100)
-    bob.turn_front_motor(280,100)
-    bob.foreward(85,100)
-    bob.foreward(55,100)
-    bob.foreward(-40,100)
-    bob.turn_front_motor(-350,100)
-    bob.turn(45,100)
-    bob.foreward(-300,400)
-    bob.foreward(-600,400)
+    yield from bob.foreward(-160,200)
+    yield from bob.turn_back_motor(400, 400)
+    yield from bob.turn(-47,100)
+    yield from bob.foreward(-100,100)
+    yield from bob.turn_front_motor(280,100)
+    yield from bob.foreward(85,100)
+    yield from bob.foreward(55,100)
+    yield from bob.foreward(-40,100)
+    yield from bob.turn_front_motor(-350,100)
+    yield from bob.turn(45,100)
+    yield from bob.foreward(-300,400)
+    yield from bob.foreward(-600,400)
 
 
 

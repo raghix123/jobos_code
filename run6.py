@@ -32,6 +32,6 @@ def execute(bob: Bob):
     # bob.foreward(900,500)
 
     # L TO R
-    bob.foreward(250, 1200)
-    bob.turn(90, 500)
-    bob.foreward(1600, 1200)
+    yield from bob.foreward(250, 1200)
+    yield from bob.turn(90, 500)
+    yield from bob.foreward(1600, 1200)
