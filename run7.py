@@ -4,11 +4,11 @@ from bob import Bob
 
 def execute(bob: Bob):
     # R TO L
-    bob.foreward(250, 1200)
-    bob.turn(-90, 500)
-    bob.foreward(1500, 1200)
-    bob.foreward(200,200)
-    bob.turn(-90,150)
+    yield from bob.foreward(250, 1200)
+    yield from bob.turn(-90, 500)
+    yield from bob.foreward(1500, 1200)
+    yield from bob.foreward(200,200)
+    yield from bob.turn(-90,150)
     # bob.arc(radius=-230, angle=90, then=Stop.COAST)
     # bob.foreward_and_front_motor(foreward_distance=240, foreward_speed=250, turn_degree=240, turn_speed=300)
     # for hit in range(6):

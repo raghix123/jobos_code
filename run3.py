@@ -4,11 +4,11 @@ from pybricks.tools import wait
 from pybricks.parameters import Stop
 
 def execute(bob: Bob):
-    bob.foreward(980,100)
-    bob.turn(88,100)
-    bob.foreward(50,100)
-    bob.turn(-12,60)
-    bob.turn_front_motor(-2000,300)
+    yield from bob.foreward(980,100)
+    yield from bob.turn(88,100)
+    yield from bob.foreward(50,100)
+    yield from bob.turn(-12,60)
+    yield from bob.turn_front_motor(-2000,300)
 
     # bob.foreward(distance=320, speed=300, then=Stop.BRAKE)
     # bob.arc(radius=550, angle=50, then=Stop.BRAKE)
