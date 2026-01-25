@@ -7,6 +7,15 @@ This repository contains the code for our robot, Jobo, developed using Pybricks 
 Primary development branch: main
 All related documentation, designs, and resources are openly available.
 
+Project Status and Robot Open Sourcing
+
+We are currently working on fully open sourcing our robot design as well.
+
+Our current progress, including early documentation and build details, is available here:
+https://sites.google.com/view/bobthebuilders-/home
+
+The robot open source release is still in progress and will be completed soon. It will include clearer build instructions, improved diagrams, and more polished documentation for both the robot hardware and the codebase.
+
 Key Features
 
 1. IMU based Correction
