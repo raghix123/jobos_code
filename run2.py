@@ -79,3 +79,6 @@ def execute(bob: Bob):
     # bob.arc(radius=-200, angle=85, speed=500, then=Stop.COAST)
     # bob.foreward(distance=600, speed=500)
     # # Back home
+    bob.arc(radius=-105, angle=85, speed=500, then=Stop.COAST)
+    bob.foreward(distance=700, speed=500)
+    # Back home
