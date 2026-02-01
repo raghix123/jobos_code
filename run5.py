@@ -9,15 +9,23 @@ from pybricks.tools import wait
 from bob import Bob
 
 def execute(bob: Bob):
-    yield from bob.turn_front_motor(degree=-45, speed=100)
-    # Ready
 
-    yield from bob.foreward(distance=250, speed=200)
+    #yield from bob.turn_front_motor(degree=-45, speed=100)
+    # # Ready
 
+    yield from bob.foreward(distance=260, speed=200)
+
+    yield from bob.run_front_motor_until_stalled(speed=100, then=Stop.HOLD, duty_limit=40)
+
+    #yield from bob.foreward(distance=35, speed=200)
+
+    yield from bob.turn_front_motor(degree=-100, speed=200)   
+
+    return
 
     yield from bob.turn(degree=-45, speed=75, then=Stop.BRAKE)
     # Marketwares solved
-    
+
     yield from bob.foreward(distance=160,speed=100)
     yield from bob.turn(degree=26, speed=100)
 

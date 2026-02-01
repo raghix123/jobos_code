@@ -13,7 +13,7 @@ def execute(bob: Bob):
     # bob.foreward(-100,100)
 
 
-    yield from bob.foreward_and_front_motor(480,250,-50,250, Stop.HOLD)
+    yield from bob.foreward_and_front_motor(520,250,-50,250, Stop.HOLD)
     yield from bob.turn_front_motor(50,250)
     yield from bob.foreward(-50,250)
     yield from bob.turn_front_motor(-300,250)

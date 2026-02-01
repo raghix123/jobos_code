@@ -56,6 +56,14 @@ class Bob:
 
     # ---------------- MOTOR HELPERS ----------------
 
+    def reset_back_motor_angle(self, angle=0):
+        self.back_motor.reset_angle(angle)
+        yield
+
+    def reset_attachment_motor_angle(self, angle=0):
+        self.attachment_motor.reset_angle(angle)
+        yield
+
     def turn_front_motor(self, degree, speed, then=Stop.HOLD):
         self.attachment_motor.run_angle(
             speed=speed, rotation_angle=degree, then=then, wait=False
@@ -70,10 +78,17 @@ class Bob:
         while not self.back_motor.done():
             yield
 
-    def turn_back_motor_dc(self, dc, time_ms):
+    def attachment_motor_run_target(self, speed, target_angle, then=Stop.BRAKE):
+        self.attachment_motor.run_target(
+            speed=speed, target_angle=target_angle, then=then, wait=False
+        )
+        while not self.attachment_motor.done():
+            yield
+
+    def turn_back_motor_dc(self, dc, time):
         self.back_motor.dc(dc)
         elapsed = 0
-        while elapsed < time_ms:
+        while elapsed < time:
             yield
             wait(10)
             elapsed += 10
@@ -83,6 +98,20 @@ class Bob:
         self.back_motor.run_angle(speed=speed, rotation_angle=degree, then=Stop.BRAKE)
         while not self.back_motor.done():
             yield
+
+    def run_front_motor_until_stalled(self, speed, then=Stop.HOLD, duty_limit=100):
+        # run_until_stalled is blocking - no wait=False option
+        self.attachment_motor.run_until_stalled(
+            speed=speed, then=then, duty_limit=duty_limit
+        )
+        yield
+
+    def run_back_motor_until_stalled(self, speed, then=Stop.BRAKE, duty_limit=100):
+        # run_until_stalled is blocking - no wait=False option
+        self.back_motor.run_until_stalled(
+            speed=speed, then=then, duty_limit=duty_limit
+        )
+        yield
 
     # ---------------- COMPOSITES ----------------
 
