@@ -20,6 +20,13 @@ class Bob:
             wheel_diameter=87.0,
             axle_track=114.3,
         )
+        # Gentler correction to reduce snaking (lower turn_rate = less overshoot)
+        self.drivebase.settings(
+            straight_speed=250,
+            straight_acceleration=400,
+            turn_rate=100,
+            turn_acceleration=300,
+        )
 
    # ---------------- PRIMITIVES ----------------
 
@@ -63,6 +70,15 @@ class Bob:
     def reset_attachment_motor_angle(self, angle=0):
         self.attachment_motor.reset_angle(angle)
         yield
+
+    def turn_front_motor_dc(self, dc, time):
+        self.attachment_motor.dc(dc)
+        elapsed = 0
+        while elapsed < time:
+            yield
+            wait(10)
+            elapsed += 10
+        self.attachment_motor.stop()
 
     def turn_front_motor(self, degree, speed, then=Stop.HOLD):
         self.attachment_motor.run_angle(
