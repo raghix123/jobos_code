@@ -21,7 +21,7 @@ class Bob:
             axle_track=114.3,
         )
 
-    # ---------------- PRIMITIVES ----------------
+   # ---------------- PRIMITIVES ----------------
 
     def foreward(self, distance, speed, then=Stop.BRAKE):
         default = self.drivebase.settings()
