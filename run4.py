@@ -1,8 +1,8 @@
-from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor
-from pybricks.parameters import Port, Direction, Stop
-from pybricks.robotics import DriveBase
-from pybricks.tools import wait
+from pybricks.hubs import PrimeHub  # pyright: ignore[reportMissingImports]
+from pybricks.pupdevices import Motor  # pyright: ignore[reportMissingImports]
+from pybricks.parameters import Port, Direction, Stop  # pyright: ignore[reportMissingImports]
+from pybricks.robotics import DriveBase  # pyright: ignore[reportMissingImports]
+from pybricks.tools import wait  # pyright: ignore[reportMissingImports]
 
 from bob import Bob
 
