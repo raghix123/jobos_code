@@ -17,7 +17,7 @@ def execute(bob: Bob):
         yield from bob.back_motor_run_target(speed=400, target_angle=0, then=Stop.BRAKE)
     # Silo done
     
-    yield from bob.foreward(90, 200)
+    yield from bob.foreward(90, 250)
     yield from bob.turn(degree=-30, speed=250, then=Stop.HOLD)
     wait(200)
     # Who lived here done
@@ -40,5 +40,5 @@ def execute(bob: Bob):
 
     yield from bob.foreward(distance=-270, speed=300, then=Stop.BRAKE)
     yield from bob.turn(90)
-    yield from bob.arc(radius=-775, angle=160, speed=400)
+    yield from bob.arc(radius=775, angle=-100, speed=400)
     # Home
