@@ -12,7 +12,25 @@ def execute(bob: Bob):
 
     #yield from bob.turn_front_motor(degree=-45, speed=100)
     # # Ready
+    yield from bob.foreward(520, 200)
 
+    yield from bob.turn(36, 150)
+
+    yield from bob.run_front_motor_until_stalled(100, Stop.HOLD, 40)
+
+    yield from bob.turn(-80, 100)
+
+    yield from bob.turn(38, 100)
+
+    yield from bob.foreward(500, 150)
+
+    yield from bob.arc(2300,10,100)
+    return
+    yield from bob.arc(radius= 310,angle= -75, speed= 80)
+    
+    yield from bob.run_front_motor_until_stalled(speed=100, then=Stop.HOLD, duty_limit=40)
+
+    return
     yield from bob.foreward(distance=260, speed=200)
 
     yield from bob.run_front_motor_until_stalled(speed=100, then=Stop.HOLD, duty_limit=40)
@@ -21,7 +39,6 @@ def execute(bob: Bob):
 
     yield from bob.turn_front_motor(degree=-100, speed=200)   
 
-    return
 
     yield from bob.turn(degree=-45, speed=75, then=Stop.BRAKE)
     # Marketwares solved

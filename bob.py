@@ -46,6 +46,17 @@ class Bob:
             yield
         self.drivebase.settings(*default)
 
+    def turn_to(self, target_heading, speed=200, then=Stop.BRAKE):
+        """Turn to an absolute heading. Assumes calibration (0 at start) has been run."""
+        current = self.hub.imu.heading()
+        diff = target_heading - current
+        while diff > 180:
+            diff -= 360
+        while diff < -180:
+            diff += 360
+        if abs(diff) > 0:
+            yield from self.turn(diff, speed, then)
+
     def arc(self, radius, angle, speed):
         default = self.drivebase.settings()
         self.drivebase.settings(straight_speed=speed)
