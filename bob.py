@@ -46,10 +46,10 @@ class Bob:
             yield
         self.drivebase.settings(*default)
 
-    def arc(self, radius, angle, speed):
+    def arc(self, radius, angle, speed, then=Stop.BRAKE):
         default = self.drivebase.settings()
         self.drivebase.settings(straight_speed=speed)
-        self.drivebase.curve(radius, angle, wait=False)
+        self.drivebase.curve(radius, angle, wait=False, then=then)
         while not self.drivebase.done():
             yield
         self.drivebase.settings(*default)

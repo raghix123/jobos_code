@@ -16,15 +16,16 @@ RUN_ORDER = [3, 9, 4, 1, 0, 2, 8]
 LOG_INTERVAL_MS = 100
 STEP_WAIT_MS = 10
 
+# Fixed settling time after reset so IMU can stabilize. stationary() requires ~1s of
+# stillness and often never triggers in noisy/vibrating environments (e.g. competition hall).
+SETTLE_MS = 600
 
-def calibrate_and_wait_until_still(timeout_ms=5000):
+
+def calibrate_and_wait_until_still():
     hub.imu.reset_heading(0)
     bob.drivebase.reset()
     hub.display.text(".")
-    elapsed = 0
-    while not hub.imu.stationary() and elapsed < timeout_ms:
-        wait(10)
-        elapsed += 10
+    wait(SETTLE_MS)
     hub.speaker.beep(1000, 100)
 
 
@@ -76,7 +77,7 @@ def start(log=False, auto_advance=False):
             calibrate_and_wait_until_still()
             gen = runs[current_index].execute(bob)
             run_with_logging(gen, log)
-            # After run finishes, advance to next run in order
+            # Auto-advance to next run number; you position, then press LEFT to start
             if auto_advance:
                 order_pos = (order_pos + 1) % len(RUN_ORDER)
                 current_index = RUN_ORDER[order_pos]
