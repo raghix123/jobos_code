@@ -20,9 +20,23 @@ def execute(bob: Bob):
 
     yield from bob.turn(-40, 300)
 
-    yield from bob.turn(16, 300)
+    yield from bob.turn_to(0, 100, then= Stop.HOLD)
 
-    yield from bob.foreward(500, 1000)
+    yield from bob.foreward(310, 1000)
+
+    yield from bob.turn(90,100)
+
+    yield from bob.foreward(-120,100)
+    
+    yield from bob.turn_to(78,100,then=Stop.HOLD)
+
+    yield from bob.turn_back_motor(-2000,300)
+
+    yield from bob.foreward(90,100)
+
+    yield from bob.turn(-90,100)
+
+    yield from bob.foreward(175, 1000)
 
     yield from bob.arc(2000,-25,1000)
     return

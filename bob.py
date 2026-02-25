@@ -46,6 +46,16 @@ class Bob:
             yield
         self.drivebase.settings(*default)
 
+    def turn_to(self, target_heading_deg, speed=200, then=Stop.BRAKE):
+        """Turn to an absolute heading in degrees (0–360). Uses hub IMU for current heading."""
+        current = self.hub.imu.heading()
+        delta = (target_heading_deg - current) % 360
+        if delta > 180:
+            delta -= 360
+        elif delta < -180:
+            delta += 360
+        yield from self.turn(delta, speed=speed, then=then)
+
     def arc(self, radius, angle, speed, then=Stop.BRAKE):
         default = self.drivebase.settings()
         self.drivebase.settings(straight_speed=speed)
