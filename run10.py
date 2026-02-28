@@ -5,7 +5,7 @@ from pybricks.parameters import Stop
 def execute(bob: Bob):
     yield from bob.foreward(20,150)
 
-    yield from bob.run_front_motor_until_stalled(400, then=Stop.HOLD, duty_limit=30)
+    yield from bob.run_front_motor_until_stalled(400, then=Stop.HOLD, duty_limit=40)
 
     yield from bob.turn(-25,150)
 
