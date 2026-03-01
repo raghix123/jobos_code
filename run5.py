@@ -26,7 +26,7 @@ def execute(bob: Bob):
 
     yield from bob.turn(90,100)
 
-    yield from bob.foreward(-120,100)
+    yield from bob.foreward(-110,100)
     
     yield from bob.turn_to(78,100,then=Stop.HOLD)
 
@@ -34,7 +34,7 @@ def execute(bob: Bob):
 
     yield from bob.foreward(90,100)
 
-    yield from bob.turn(-90,100)
+    yield from bob.turn_to(0,100, then=Stop.HOLD)
 
     yield from bob.foreward(175, 1000)
 

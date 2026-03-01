@@ -13,18 +13,22 @@ def execute(bob: Bob):
     # Ready
 
     for hit in range(4):
-        yield from bob.turn_back_motor_dc(dc=90, time=100)
+        yield from bob.turn_back_motor_dc(dc=120, time=78)
         yield from bob.back_motor_run_target(speed=400, target_angle=0, then=Stop.BRAKE)
     # Silo done
-    
-    yield from bob.foreward(90, 350)
+    yield from bob.foreward(30,300)
+    yield from bob.turn_to(-52,200, then=Stop.HOLD)
+    yield from bob.foreward(360,300)
+    yield from bob.foreward(-350,350)
+    yield from bob.turn_to(0,300, then=Stop.HOLD)
+    yield from bob.foreward(60, 350)
     yield from bob.turn(degree=-30, speed=250, then=Stop.HOLD)
     wait(200)
     # Who lived here done
     
     yield from bob.turn(105, 100)
     yield from bob.turn(-65, 100)
-    yield from bob.turn(80, 50)
+    yield from bob.turn_to(90, 50, then=Stop.HOLD)
     # Forge releases
     
     yield from bob.foreward(120, 100)

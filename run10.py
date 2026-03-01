@@ -11,7 +11,7 @@ def execute(bob: Bob):
 
     yield from bob.turn(25,150)
 
-    yield from bob.turn_front_motor(-240,250)
+    yield from bob.turn_front_motor(-240,400)
 
     yield from bob.foreward(280,250)
     
@@ -29,4 +29,4 @@ def execute(bob: Bob):
 
     yield from bob.foreward(-240,350)
 
-    yield from bob.turn_front_motor(-400,250)
+    yield from bob.turn_front_motor(300,100)
