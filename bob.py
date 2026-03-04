@@ -20,6 +20,7 @@ class Bob:
             wheel_diameter=87.0,
             axle_track=114.3,
         )
+        self.drivebase.use_gyro(True)
         # Gentler correction to reduce snaking (lower turn_rate = less overshoot)
         self.drivebase.settings(
             straight_speed=250,
