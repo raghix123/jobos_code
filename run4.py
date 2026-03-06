@@ -21,7 +21,7 @@ def execute(bob: Bob):
     yield from bob.foreward(360,300)
     yield from bob.foreward(-350,350)
     yield from bob.turn_to(0,300, then=Stop.HOLD)
-    yield from bob.foreward(60, 350)
+    yield from bob.foreward(50, 350)
     yield from bob.turn(degree=-30, speed=250, then=Stop.HOLD)
     wait(200)
     # Who lived here done
@@ -34,8 +34,8 @@ def execute(bob: Bob):
     yield from bob.foreward(120, 100)
     # # Boulders recovered
     
-    yield from bob.attachment_motor_run_target(speed=200, target_angle=480, then=Stop.HOLD)
-    yield from bob.foreward(distance=210, speed=500)
+    yield from bob.attachment_motor_run_target(speed=200, target_angle=470, then=Stop.HOLD)
+    yield from bob.foreward(distance=220, speed=500)
     # Heavy lifting done
     
 

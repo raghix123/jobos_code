@@ -10,9 +10,11 @@ def execute(bob: Bob):
 
     yield from bob.foreward(distance=40, speed=100)
 
-    yield from bob.turn_front_motor(degree=-135, speed=100)
+    yield from bob.turn_front_motor(degree=-140, speed=100)
 
     yield from bob.foreward(distance=100, speed=100)
+
+    yield from bob.turn_front_motor(-50,100,then=Stop.HOLD)
 
     yield from bob.foreward(distance=-100, speed=100)
     

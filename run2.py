@@ -9,10 +9,14 @@ from pybricks.tools import wait, multitask
 from bob import Bob
 
 def execute(bob: Bob):
+    yield from bob.turn_front_motor(-10,500)
     yield from bob.turn_front_motor(200,500)
     # Ready to start
 
-    yield from bob.foreward(800,350)
+    yield from bob.foreward(650,550)
+    yield from bob.foreward(-650,750)
+    wait(2000)
+    yield from bob.foreward(800,550)
     yield from bob.turn_back_motor(-500,500)
     # Back attachment ready for minecart
     yield from bob.foreward(150,350)
@@ -24,21 +28,27 @@ def execute(bob: Bob):
     yield from bob.turn_back_motor(400, 500)
     yield from bob.turn(-42, 200, then=Stop.HOLD)
     yield from bob.foreward(-100, 200)
-
-
-    #moving down for completing topsoil hook thingy
-    yield from bob.turn_front_motor(245,500)
+    yield from bob.turn_front_motor(275,500)
     yield from bob.foreward(140, 200)
+    # In position on top soil
+
     yield from bob.foreward(-40, 200)
     yield from bob.turn_front_motor(-350, 200)
-    return
-    yield from bob.turn(43,200)
-    # yield from bob.foreward(-900, 500)
-    yield from bob.arc(radius=40, angle=20, speed=200, then=Stop.HOLD)
+    yield from bob.turn_to(0,300,then=Stop.HOLD)
+    yield from bob.foreward(-800,700)
+    # Lifted one of the pieces of top soil
+    
+    
+    yield from bob.foreward(-80, 100)
+    yield from bob.turn_to(0,100,then=Stop.HOLD)
+    yield from bob.foreward(-800,400)
+    yield from bob.arc(radius=40, angle=60, speed=100, then=Stop.BRAKE)
     yield from bob.foreward(-150, 200)
     yield from bob.arc(radius=-40, angle=40, speed=200, then=Stop.HOLD)
-    # yield from bob.foreward(-600,500)
+    yield from bob.foreward(-600,500)
 
+
+    # ===== DONE
 
 
     # bob.foreward(800,200)
@@ -85,6 +95,6 @@ def execute(bob: Bob):
     # bob.arc(radius=-200, angle=85, speed=500, then=Stop.COAST)
     # bob.foreward(distance=600, speed=500)
     # # Back home
-    bob.arc(radius=-105, angle=85, speed=500, then=Stop.COAST)
-    bob.foreward(distance=700, speed=500)
+    # bob.arc(radius=-105, angle=85, speed=500, then=Stop.COAST)
+    # bob.foreward(distance=700, speed=500)
     # Back home
