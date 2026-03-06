@@ -10,14 +10,14 @@ bob = Bob(hub)
 
 runs = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10]
 
-# Run order: Run4, Run10, Run5, Run2, Run1, Run3, Run9 (0-based indices into runs list)
-RUN_ORDER = [3, 9, 4, 1, 0, 2, 8]
+# Run order: Run4, Run10, Run5, Run2, Run1, Run9 (0-based indices into runs list)
+RUN_ORDER = [3, 9, 4, 1, 0, 8]
 
 LOG_INTERVAL_MS = 100
 STEP_WAIT_MS = 10
 
 
-def calibrate_and_wait_until_still(timeout_ms=5000):
+def calibrate_and_wait_until_still(timeout_ms=2000):
     hub.imu.reset_heading(0)
     bob.drivebase.reset()
     hub.display.text(".")
@@ -59,6 +59,7 @@ def start(log=False, auto_advance=False):
         current_index = 0
 
     hub.display.number(current_index + 1)
+    bob.drivebase.use_gyro(False)
 
     while True:
         pressed = hub.buttons.pressed()
@@ -73,9 +74,12 @@ def start(log=False, auto_advance=False):
             wait(300)
 
         elif Button.LEFT in pressed:
-            calibrate_and_wait_until_still()
+            bob.drivebase.use_gyro(True)
+            if current_index != 4:
+                calibrate_and_wait_until_still()
             gen = runs[current_index].execute(bob)
             run_with_logging(gen, log)
+            bob.drivebase.use_gyro(False)
             # After run finishes, advance to next run in order
             if auto_advance:
                 order_pos = (order_pos + 1) % len(RUN_ORDER)

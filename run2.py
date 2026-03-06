@@ -42,10 +42,10 @@ def execute(bob: Bob):
     yield from bob.foreward(-80, 100)
     yield from bob.turn_to(0,100,then=Stop.HOLD)
     yield from bob.foreward(-800,400)
-    yield from bob.arc(radius=40, angle=60, speed=100, then=Stop.BRAKE)
-    yield from bob.foreward(-150, 200)
-    yield from bob.arc(radius=-40, angle=40, speed=200, then=Stop.HOLD)
-    yield from bob.foreward(-600,500)
+    # yield from bob.arc(radius=40, angle=60, speed=100, then=Stop.BRAKE)
+    # yield from bob.foreward(-150, 200)
+    # yield from bob.arc(radius=-40, angle=40, speed=200, then=Stop.HOLD)
+    # yield from bob.foreward(-600,500)
 
 
     # ===== DONE
