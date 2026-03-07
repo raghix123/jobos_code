@@ -75,7 +75,7 @@ def start(log=False, auto_advance=False):
 
         elif Button.LEFT in pressed:
             bob.drivebase.use_gyro(True)
-            if current_index != 4:
+            if current_index != 4 and current_index != 9:
                 calibrate_and_wait_until_still()
             gen = runs[current_index].execute(bob)
             run_with_logging(gen, log)
