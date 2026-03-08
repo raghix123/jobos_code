@@ -2,6 +2,9 @@ from pybricks.tools import wait
 from bob import Bob
 from pybricks.parameters import Stop
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
     yield from bob.foreward(20,150)
 

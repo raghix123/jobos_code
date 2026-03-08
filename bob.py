@@ -31,6 +31,22 @@ class Bob:
 
    # ---------------- PRIMITIVES ----------------
 
+    def calibrate(self, ms):
+        if ms <= 0:
+            return
+
+        self.hub.imu.reset_heading(0)
+        self.drivebase.reset()
+        self.hub.display.text(".")
+
+        elapsed = 0
+        # Hold for the requested calibration window.
+        while elapsed < ms:
+            wait(10)
+            elapsed += 10
+
+        self.hub.speaker.beep(1000, 100)
+
     def foreward(self, distance, speed, then=Stop.BRAKE):
         default = self.drivebase.settings()
         self.drivebase.settings(straight_speed=speed)

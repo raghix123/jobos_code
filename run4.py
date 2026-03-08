@@ -6,6 +6,9 @@ from pybricks.tools import wait  # pyright: ignore[reportMissingImports]
 
 from bob import Bob
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
     yield from bob.reset_back_motor_angle(0)
     yield from bob.reset_attachment_motor_angle(0)

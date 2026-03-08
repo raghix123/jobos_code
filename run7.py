@@ -2,6 +2,9 @@ from pybricks.parameters import Port, Direction, Stop
 
 from bob import Bob
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
     # R TO L
     yield from bob.foreward(250, 1200)

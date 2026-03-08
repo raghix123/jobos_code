@@ -8,6 +8,9 @@ from pybricks.tools import wait
 
 from bob import Bob
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
     # bob.foreward(660,100)
     # bob.foreward(-100,100)

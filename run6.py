@@ -1,5 +1,8 @@
 from bob import Bob
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
     # bob.foreward(700,250)
     # bob.turn(30)

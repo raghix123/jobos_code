@@ -8,6 +8,9 @@ from pybricks.tools import wait
 
 from bob import Bob
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
 
     #yield from bob.turn_front_motor(degree=-45, speed=100)

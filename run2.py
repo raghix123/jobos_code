@@ -8,6 +8,9 @@ from pybricks.tools import wait, multitask
 
 from bob import Bob
 
+def calibrate_ms():
+    return 500
+
 def execute(bob: Bob):
     yield from bob.turn_front_motor(-10,500)
     yield from bob.turn_front_motor(200,500)
