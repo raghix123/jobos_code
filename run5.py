@@ -15,11 +15,13 @@ def execute(bob: Bob):
 
     #yield from bob.turn_front_motor(degree=-45, speed=100)
     # # Ready
-    yield from bob.foreward(500,600)
+    yield from bob.foreward(508,600)
 
-    yield from bob.turn(34, 300)
+    yield from bob.turn(38, 300)
 
     yield from bob.run_front_motor_until_stalled(10000, Stop.HOLD, 40)
+
+    yield from bob.foreward(-10,100)
 
     yield from bob.turn(-40, 300)
 

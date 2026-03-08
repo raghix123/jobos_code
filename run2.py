@@ -23,7 +23,8 @@ def execute(bob: Bob):
     yield from bob.turn_back_motor(-500,500)
     # Back attachment ready for minecart
     yield from bob.foreward(150,350)
-    yield from bob.turn_back_motor(200,500)
+    yield from bob.turn_back_motor(250,300)
+    wait(500)                                                                                                               
     yield from bob.turn_back_motor(-200,500)
     # Minecart done
 

@@ -24,7 +24,7 @@ def execute(bob: Bob):
     yield from bob.foreward(360,300)
     yield from bob.foreward(-350,350)
     yield from bob.turn_to(0,300, then=Stop.HOLD)
-    yield from bob.foreward(50, 350)
+    yield from bob.foreward(70, 350)
     yield from bob.turn(degree=-30, speed=250, then=Stop.HOLD)
     wait(200)
     # Who lived here done
