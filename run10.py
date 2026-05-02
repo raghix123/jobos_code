@@ -6,25 +6,37 @@ def calibrate_ms():
     return 500
 
 def execute(bob: Bob):
-    yield from bob.foreward(20,150)
+    #yield from bob.foreward(20,150)
 
-    yield from bob.run_front_motor_until_stalled(400, then=Stop.HOLD, duty_limit=40)
+    #yield from bob.run_front_motor_until_stalled(400, then=Stop.HOLD, duty_limit=40)
 
-    yield from bob.turn(-25,150)
+    #yield from bob.turn(-25,150)
 
-    yield from bob.turn(25,150)
+    #yield from bob.turn(25,150)
 
-    yield from bob.turn_front_motor(-280,400)
+   # yield from bob.turn_front_motor(-280,400)
 
     yield from bob.foreward(280,250)
     
     yield from bob.run_front_motor_until_stalled(400, then=Stop.HOLD, duty_limit=30)
     
     wait(100)
+
+    yield from bob.turn_front_motor(-285,100)
+
+    yield from bob.turn_to(0,100)
+
+    yield from bob.foreward(40,100)
+
+    yield from bob.turn(-30,100)
+
+    yield from bob.turn(30,100)
     
     # yield from bob.foreward_and_front_motor(-80,180,-350,150)
 
-    yield from bob.foreward(-400, 300)
+    yield from bob.run_front_motor_until_stalled(400, then=Stop.HOLD, duty_limit=30)
+
+    yield from bob.foreward(-440, 300)
 
     yield from bob.foreward(20,100)
 

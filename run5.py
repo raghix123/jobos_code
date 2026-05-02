@@ -15,9 +15,9 @@ def execute(bob: Bob):
 
     #yield from bob.turn_front_motor(degree=-45, speed=100)
     # # Ready
-    yield from bob.foreward(508,600)
+    yield from bob.foreward(510,600)
 
-    yield from bob.turn(38, 300)
+    yield from bob.turn_to(35, 300)
 
     yield from bob.run_front_motor_until_stalled(10000, Stop.HOLD, 40)
 
@@ -27,19 +27,23 @@ def execute(bob: Bob):
 
     yield from bob.turn_to(0, 100, then= Stop.HOLD)
 
-    #yield from bob.foreward(310, 1000)
+    yield from bob.foreward(310, 1000)
 
-    # yield from bob.turn(90,100)
+    yield from bob.turn(90,100)
 
-    # yield from bob.foreward(-120,100)
+    yield from bob.foreward(-120,100)
+
+    yield from bob.turn(-20,100)
     
     # yield from bob.turn_to(78,100,then=Stop.HOLD)
 
-    # yield from bob.turn_back_motor(-2000,300)
+    yield from bob.turn_back_motor(-2000,300)
 
-    # yield from bob.foreward(90,100)
+    yield from bob.turn(20,100)
 
-    # yield from bob.turn_to(0,100,then=Stop.HOLD)
+    yield from bob.foreward(80,100)
+
+    yield from bob.turn_to(0,100,then=Stop.HOLD)
 
     #yield from bob.foreward(175, 1000)
 
