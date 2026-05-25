@@ -32,7 +32,7 @@ def execute(bob: Bob):
     yield from bob.turn_back_motor(400, 500)
     yield from bob.turn(-42, 200, then=Stop.HOLD)
     yield from bob.foreward(-100, 200)
-    yield from bob.turn_front_motor(275,500)
+    yield from bob.turn_front_motor(250,500)
     yield from bob.foreward(140, 200)
     # In position on top soil
 
