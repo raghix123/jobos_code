@@ -22,7 +22,7 @@ def execute(bob: Bob):
     
     wait(100)
 
-    yield from bob.turn_front_motor(-245,200)
+    yield from bob.turn_front_motor(-215,200)
 
     yield from bob.turn_to(0,100)
 
@@ -30,7 +30,7 @@ def execute(bob: Bob):
 
     yield from bob.turn(-40,100)
 
-    yield from bob.foreward(-10,100)
+    yield from bob.foreward(-20,100)
 
     yield from bob.turn_to(0,100)
     
